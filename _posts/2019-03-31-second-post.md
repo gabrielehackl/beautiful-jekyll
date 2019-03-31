@@ -1,6 +1,17 @@
 ---
+
 layout: post
-title: Second post!
+
+title: Learning Git with Codecademy
+
+
 ---
 
-This is another test! This post should be posted on Sunday 31st March 2019.
+
+
+These are my most recent badges! I completed the course "learn git".
+
+![image markdown](pictures_for_posts/GabrieleHackl_badges_git.jpg)
+<img src="pictures_for_posts/GabrieleHackl_badges_git.jpg" alt="image html" />
+![with url](https://gabrielehackl.github.io/_posts/pictures_for_posts/GabrieleHackl_badges_git.jpg)
+      

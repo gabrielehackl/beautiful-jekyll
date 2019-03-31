@@ -13,5 +13,4 @@ These are my most recent badges! I completed the course "learn git".
 
 ![image badges git](pictures_for_posts/GabrieleHackl_badges_git.jpg)
 <img src="pictures_for_posts/GabrieleHackl_badges_git.jpg" alt="image badges git" />
-![pic 3](https://github.com/gabrielehackl/gabrielehackl.github.io/_posts/pictures_for_posts/GabrieleHackl_badges_git.jpg)
             

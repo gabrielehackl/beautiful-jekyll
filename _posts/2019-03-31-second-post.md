@@ -19,10 +19,8 @@ These are my most recent badges! I completed the course "learn git".
 
 ![image markdown](pictures_for_posts/GabrieleHackl_badges_git.jpg)
 
-
-![image markdown](https://gabrielehackl.github.io/_posts/pictures_for_posts/GabrieleHackl_badges_git.jpg)     
-
 [link to badges](https://www.codecademy.com/users/hackl_g/achievements)
-<p>
-    <img src="pictures_for_posts/GabrieleHackl_badges_git.jpg" />
-</p>
+
+<img src="pictures_for_posts/GabrieleHackl_badges_git.jpg" />
+
+![image markdown](/img/GabrieleHackl_badges_git.jpg)

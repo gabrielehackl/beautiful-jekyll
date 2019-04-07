@@ -4,13 +4,21 @@
 layout: post
 
 
-title: Practicing _markdown_
+title: Practicing *markdown* and Python
 
 
 
 ---
 
-I practiced _markdown_ and learned how to reference literature with "Atom".
+
+
+
+These are my most recent badges! I completed the first lessons of **Python**.
+
+![image badges Python](/img/GabrieleHackl_badges_python.jpg)
+
+
+I also practiced _markdown_ and learned how to reference literature.
 Here's the html:
 
 <h1 id="modeling-a-study-in-words-and-meanings">19. Modeling: A Study in Words and Meanings</h1>
@@ -373,6 +381,6 @@ Here's the html:
 </section>
 
 
-[Have a look at the docx-version, created with pandoc](/lesson04/McCarty_Modeling.docx)
+[Have a look at the docx-version:](/lesson04/McCarty_Modeling.docx)
 
-[...or at the pdf-file, also created with pandoc:](/lesson04/McCarty_Modeling.pdf)
+[Or at the pdf-file:](/lesson04/McCarty_Modeling.pdf)

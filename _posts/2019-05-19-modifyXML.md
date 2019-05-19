@@ -13,7 +13,7 @@ Trying to find certain text (articles) in a text (issue) in XML format, saving t
 
 Done with *REGEX*:
 
-<code>
+~~~
 import os
 import re
 
@@ -34,11 +34,11 @@ for f in lof:
             newFileName = issue_date + "_" + str(counter)
             with open(newPath+newFileName, "w", encoding="utf8") as f9:
                 f9.write(cleantext)
-</code>
+~~~
 
 Done with *BeautifulSoup*:
 
-<code>
+~~~
 import os
 import re
 from bs4 import BeautifulSoup
@@ -60,4 +60,4 @@ for f in lof:
             newFileName = issue_date + "_" + str(counter) + ".txt"
             with open(newPath+newFileName, "w", encoding="utf8") as f9:
                 f9.write(data)
-</code>
+~~~

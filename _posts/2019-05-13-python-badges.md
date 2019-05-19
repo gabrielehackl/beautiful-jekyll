@@ -4,7 +4,7 @@
 layout: post
 
 
-title: Python becoming difficult
+title: Python becoming a challenge
 
 
 

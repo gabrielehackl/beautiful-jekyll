@@ -6,10 +6,10 @@ layout: post
 
 title:  One bird with two stones: Regex and Beautiful Soup
 
-subtitle: Modifying XML files two different ways
+subtitle: Modifying XML files and producing text-output two different ways
 
 ---
-Trying to find certain text (articles) in a text (issue) in XML format, saving the found texts in new files with new filenames (consisting of date and a serial number/counter) - first with Regex, then with BeautifulSoup. Both programs put out exaclty the same amount of files (articles), which is a good sign, right?
+Trying to find certain text (articles) in a text (issues, stored in a list) in XML format, saving the found texts in new files with new filenames (consisting of date and a serial number/counter) - first with Regex, then with BeautifulSoup. Both programs put out exaclty the same amount of files (articles), which is a good sign, right?
 
 Done with *REGEX*:
 

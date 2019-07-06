@@ -1,29 +1,23 @@
 ---
 layout: post
-title: Two scripts one Map
-subtitle: Merging Data for Georeferencing
+title: Two scripts one Map - Update
+subtitle: Merging Data for Georeferencing (time stamp needed)
 
 
 
 
 ---
-What had to be done:
-First script: Extracting tgn-IDs and their frequency from XML-files (our "Dispatch"), creating one file for every year, as well as extracting tgn-ID and coordinates from XML-files ("Getty Gazzetter"), saving them in a tsv-format; second script: Loading our modified tsv-file with the tgn-ID and coordinates into a dictionary and matching the IDs with the IDs of the files with the toponyms, creating one file for every year again, but with added place name and frequency; the created tsv-files are then layerd in QGIS;
-What the challenges were:
-First script: the main task here was to calculate the coordinates anew, as the given decimals were not exact enough; I also stumbled upon the problem, that some coordinates had no entry (were completely empty), although the TAG was there, so I had to single those out and put them in a file with the ones that had no coordinate-tag at all (list "NA"); while working on the script, I annotated the code;
-Second script: I worked with the given functions/code, which was fine; I annotated nearly every piece of code; I did not produce a time stamp for mapping/plotting with QGIS though;
+I updated my code so the files include not only the coordinates but a time stamp useable in QGIS, for not only mapping the coordinates but visualizing a time-line;
 
 **SCRIPT I:**
 ~~~
 import re, os
 
 source = "C:/Users/hackl/Documents/Seminare/DH_Methodenkurs/MAPPING2/XMLfiles/"
-oldPath = "C:/Users/hackl/Documents/Seminare/DH_Methodenkurs/MAPPING/Homework/"
-newPath = "C:/Users/hackl/Documents/Seminare/DH_Methodenkurs/MAPPING2/"
+oldPath = "C:/Users/hackl/Documents/Seminare/DH_Methodenkurs/TSV2/Homework/"
+newPath = "C:/Users/hackl/Documents/Seminare/DH_Methodenkurs/MAPPING2/update/"
 
 lof = os.listdir(oldPath)
-
-counter = 0
 
 def generate(filter): #function where filter will be our input (the year)
 
@@ -50,11 +44,11 @@ def generate(filter): #function where filter will be our input (the year)
     top_TSV = [] #creating a list to write a csv-file
     #filling the list with our data:
     for tgnnumber, frequency in topCountDictionary.items():
-        val = "%09d\t%s" % (frequency, tgnnumber)#defining the exakt syntax for the csv file
+        val = "%09d\t%s\t01-01-%s" % (frequency, tgnnumber, filter)#defining the exakt syntax for the csv file
         top_TSV.append(val)#adding the information into the list                    
 
     #saving the data in csv format:
-    header = "freq\ttgn\n"
+    header = "freq\ttgn\ttimestamp\n"
     with open("dispatch_toponyms_%s.tsv" % filter, "w", encoding="utf8") as f9:
         f9.write(header+"\n".join(top_TSV))#wirting the file into numerous lines incl. a header-line
 
@@ -177,15 +171,15 @@ def match(freqFile, dicToMatch):
         dataNewNA = []
         count = 0
 
-        for d in data[1:]:#looping through our toponymes-file
-            tgnID = d.split("\t")[1]#getting the tgn-number so we can compare it to the one in the dict
-            freq  = d.split("\t")[0]#getting the frequency so we can write it in a csv
+        for d in data[1:]: # looping through our toponymes-file
+            tgnID = d.split("\t")[1] # getting the tgn-number so we can compare it to the one in the dict
+            freq  = d.split("\t")[0] # getting the frequency so we can write it in a csv
+            timestamp = d.split("\t")[2]
+            if tgnID in dicToMatch: # matching places to the dict by tgn-number
+                val = "\t".join(dicToMatch[tgnID]) # variable for the entry in the dict
+                val  = val + "\t" + freq + "\t" + timestamp # adding the frequency and the timestamp to the entry in the dict
 
-            if tgnID in dicToMatch:#matching places to the dict by tgn-number
-                val = "\t".join(dicToMatch[tgnID])#variable for the entry in the dict
-                val  = val + "\t" + freq#adding the frequency to the entry in the dict
-
-                if "\tNA\t" in val:#creating lists with the toponymes with and without any coordinates
+                if "\tNA\t" in val: # creating lists with the toponymes with and without any coordinates
                     dataNewNA.append(val)
                 else:
                     dataNew.append(val)
@@ -193,7 +187,7 @@ def match(freqFile, dicToMatch):
                 print("%s (%d) not in TGN!" % (tgnID, int(freq)))#states which tgnID could not be found and what frequency it had
                 count += 1
 
-    header = "tgnID\tplacename\tlat\tlon\tfreq\n"
+    header = "tgnID\tplacename\tlat\tlon\tfreq\ttime_stamp\n"
     #creating a file with all the toponymes with their coordinates:
     with open("coord_"+freqFile, "w", encoding="utf8") as f9a:
         f9a.write(header + "\n".join(dataNew))
@@ -215,8 +209,6 @@ match("dispatch_toponyms_1865.tsv", dictionary)
 
 **QGIS:**
 
-I then loaded the created data as "delimited text layers" into a QGIS-project, playing around with the different design possibilities:
+I then loaded the created data as "delimited text layers" into a QGIS-project, saving them as shape-files and tried to animate them with the Time Manager-Plugin; after a number of fails, I decided to create the animated maps with other means:
 
-![image map1861](/img/1861_dots.jpg)
-
-![image map1861-1865](/img/1861-1865_europe.jpg)
+![image animated time line](/img/dispatch.gif)
